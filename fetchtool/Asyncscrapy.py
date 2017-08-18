@@ -22,8 +22,8 @@ class MyClass(object):
         request = HTTPRequest(url=url,
                             method='GET',
                             headers=self.headers,
-                            connect_timeout=300.0,
-                            request_timeout=600.0,
+                            connect_timeout=600.0,
+                            request_timeout=800.0,
                             follow_redirects=False,
                             max_redirects=False,
                             user_agent="Mozilla/5.0+(Windows+NT+6.2;+WOW64)+AppleWebKit/537.36+(KHTML,+like+Gecko)+Chrome/45.0.2454.101+Safari/537.36",)
@@ -51,8 +51,8 @@ class MyClass(object):
             md5=hashlib.md5(response.effective_url.encode('utf-8')).hexdigest()
             with open( self.dis +'/' + md5 + '.xml','wb+') as f:
                 f.write(result)
-            # with open( self.dis +'/' + md5 + '.html','wb+') as f:
-            #     f.write(response.body)  
+            with open( self.dis +'/' + md5 + '.html','wb+') as f:
+                f.write(response.body)  
         except:
             print("error")
             # pass

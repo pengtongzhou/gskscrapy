@@ -1,0 +1,25 @@
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" >
+<xsl:template match="/">
+<compangy>
+<xsl:apply-templates select="//*[@id='1']/div[position()=1]/div[position()=1]/div[position()=1 and count(.//*[@class='c-gap-bottom'])>0]" mode="compangy"/>
+</compangy>
+</xsl:template>
+
+
+<xsl:template match="//*[@id='1']/div[position()=1]/div[position()=1]/div[position()=1 and count(.//*[@class='c-gap-bottom'])>0]" mode="compangy">
+<item>
+<企业名称>
+<xsl:copy-of select="//*[@class='c-gap-bottom']/text()"/>
+</企业名称>
+<识别码>
+<xsl:copy-of select="//*[@class='cust-num']/text()"/>
+</识别码>
+<合作时间>
+<xsl:value-of select="//table[@class='content-table']//td[contains(text(),'月')]"/>
+</合作时间>
+<公司网站>
+<xsl:copy-of select="//table[@class='content-table']//td/a/@href"/>
+</公司网站>
+</item>
+</xsl:template>
+</xsl:stylesheet>

@@ -23,20 +23,30 @@ class webclass(object):
         df=pd.read_excel(fileName,0)
         self.urls=df['URL']
 
-    def setconfig(self,config):
-        with open( "./爬虫配置/" + config + "/" + config + ".json",'r',encoding='UTF-8') as f:
-            cnf=json.loads(f.read())
-        self.argurl=cnf['argurl']    
-        self.cookie=cnf['cookie']
-        self.web_code=cnf['code']
-        theme=cnf['theme'].split('&theme=')
+    def seturl(self,argurl):
+        switch={0:lambda x:self.seturlFromFile(x),1:lambda x:self.seturlFromMem(x)}
+        switch['://' in argurl](argurl)
+
+    def setxlstFromweb(self,apiurl):
+        theme=apiurl.split('&theme=')
         theme[1]=quote(theme[1])
         apiurl = '&theme='.join(theme)
         self.xlst=request.urlopen(apiurl).read()
 
-    def run(self,arg):
-        switch={0:lambda x:self.seturlFromFile(x),1:lambda x:self.seturlFromMem(x)}
-        switch['://' in arg](arg)
+    def setxlstFromFile(self,apifile):
+        with open(apifile,'r+',encoding="utf-8") as f:
+            self.xlst=f.read()
+
+    def setxlst(self,argxlst):
+        switch={0:lambda x:self.setxlstFromFile(x),1:lambda x:self.setxlstFromweb(x)}
+        switch['://' in argxlst](argxlst)
+
+    def setconfig(self,config):
+        with open( "./爬虫配置/" + config + "/" + config + ".json",'r',encoding='UTF-8') as f:
+            self.cnf=json.loads(f.read())
+        
+
+
 
 if __name__ == '__main__':
     urls=["http://content.aetoscg.com/api/getEcoDataList.php?onDate=" + str(i) for i in range(20170101,20170130)]
