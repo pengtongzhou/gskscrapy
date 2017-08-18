@@ -7,12 +7,12 @@ file_main,theme=argv
 URLS=myscrapy.webclass()
 URLS.setconfig(theme)
 URLS.seturl(URLS.cnf['argurl'])
-URLS.setxlst(URLS.cnf['theme'])
+URLS.setxslt(URLS.cnf['theme'])
 
-myscrapy.fetch_text(URLS.urls,URLS.xlst,URLS.cnf['code'],URLS.cnf['cookie'],theme)
+myscrapy.fetch_text(URLS.urls,URLS.xslt,URLS.cnf['code'],URLS.cnf['cookie'],theme)
 
 # f=lambda a:map(lambda b:a[b:b+4],range(0,len(a),4))
 # arv=f(URLS.urls)
 # for i in arv:
-#     myscrapy.fetch_text(URLS.urls,URLS.xlst,URLS.cnf['code'],URLS.cnf['cookie'],theme)
+#     myscrapy.fetch_text(URLS.urls,URLS.xslt,URLS.cnf['code'],URLS.cnf['cookie'],theme)
 #     time.sleep(15)

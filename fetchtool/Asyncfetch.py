@@ -3,9 +3,9 @@ import pandas as pd
 from urllib import request
 from urllib.parse import quote
 import re,json,time,pdb
-def fetch_text(urls,xlst,code,cookie,dis):
+def fetch_text(urls,xslt,code,cookie,dis):
     dd = Asyncscrapy.Download()
-    dd.data_concat(urls,xlst,code,cookie,dis)
+    dd.data_concat(urls,xslt,code,cookie,dis)
 
 class webclass(object):
     def __init__(self):
@@ -27,19 +27,19 @@ class webclass(object):
         switch={0:lambda x:self.seturlFromFile(x),1:lambda x:self.seturlFromMem(x)}
         switch['://' in argurl](argurl)
 
-    def setxlstFromweb(self,apiurl):
+    def setxsltFromweb(self,apiurl):
         theme=apiurl.split('&theme=')
         theme[1]=quote(theme[1])
         apiurl = '&theme='.join(theme)
-        self.xlst=request.urlopen(apiurl).read()
+        self.xslt=request.urlopen(apiurl).read()
 
-    def setxlstFromFile(self,apifile):
+    def setxsltFromFile(self,apifile):
         with open(apifile,'r+',encoding="utf-8") as f:
-            self.xlst=f.read()
+            self.xslt=f.read()
 
-    def setxlst(self,argxlst):
-        switch={0:lambda x:self.setxlstFromFile(x),1:lambda x:self.setxlstFromweb(x)}
-        switch['://' in argxlst](argxlst)
+    def setxslt(self,argxslt):
+        switch={0:lambda x:self.setxsltFromFile(x),1:lambda x:self.setxsltFromweb(x)}
+        switch['://' in argxslt](argxslt)
 
     def setconfig(self,config):
         with open( "./爬虫配置/" + config + "/" + config + ".json",'r',encoding='UTF-8') as f:

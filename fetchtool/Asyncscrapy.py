@@ -30,8 +30,8 @@ class MyClass(object):
         yield self.http.fetch(request, callback=self.find, raise_error=False)
     def set_header(self,headers):
         self.headers=headers
-    def set_xlst(self,xlst):
-        self.xlst=xlst
+    def set_xslt(self,xslt):
+        self.xslt=xslt
     def set_code(self,code):
         self.code=code
     def set_dis(self,dis):
@@ -42,19 +42,19 @@ class MyClass(object):
             # print(response.error)
             pass
         # print(response.code, response.effective_url, response.request_time )
-        # print(self.xlst)
+        # print(self.xslt)
         try:
             doc=etree.HTML(response.body.decode(self.code,'ignore'))
             bbsExtra = gooseeker.GsExtractor() 
-            bbsExtra.setXsltFromMem(self.xlst)
+            bbsExtra.setXsltFromMem(self.xslt)
             result = bbsExtra.extract(doc) # 调用extract方法提取所需内容
             md5=hashlib.md5(response.effective_url.encode('utf-8')).hexdigest()
             with open( self.dis +'/' + md5 + '.xml','wb+') as f:
                 f.write(result)
-            with open( self.dis +'/' + md5 + '.html','wb+') as f:
-                f.write(response.body)  
+            # with open( self.dis +'/' + md5 + '.html','wb+') as f:
+            #     f.write(response.body)  
         except:
-            print("error")
+            print("请检查xslt规则是否正确")
             # pass
         
 class Download(object):
@@ -76,9 +76,9 @@ class Download(object):
         t = time.time() - t1
         print(t)
 
-    def data_concat(self,urls,xlst,code,cookie,dis):
+    def data_concat(self,urls,xslt,code,cookie,dis):
         self.set_url(urls)
-        self.a.set_xlst(xlst)
+        self.a.set_xslt(xslt)
         self.a.set_code(code)
         self.a.set_dis(dis)
         self.make_cookie(cookie)

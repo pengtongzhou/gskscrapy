@@ -1,0 +1,19 @@
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:svg="http://www.w3.org/2000/svg" >
+<xsl:template match="/">
+<company>
+<xsl:apply-templates select="//*[@class='query_name search-new-color sv-search-company' and count(./.)>0]" mode="company"/>
+</company>
+</xsl:template>
+
+
+<xsl:template match="//*[@class='query_name search-new-color sv-search-company' and count(./.)>0]" mode="company">
+<item>
+<企业名称>
+<xsl:value-of select="."/>
+</企业名称>
+<二级网址>
+<xsl:value-of select="@href"/>
+</二级网址>
+</item>
+</xsl:template>
+</xsl:stylesheet>
