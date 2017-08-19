@@ -25,7 +25,7 @@
 
     for i in arv:
 
-        myscrapy.fetch_text(URLS.urls,URLS.xslt,URLS.cnf['code'],URLS.cnf['cookie'],theme)
+        myscrapy.fetch_text(i,URLS.xslt,URLS.cnf['code'],URLS.cnf['cookie'],theme)
 
         time.sleep(15)
 </pre>
