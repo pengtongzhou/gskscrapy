@@ -45,11 +45,3 @@ class webclass(object):
         with open( "./爬虫配置/" + config + "/" + config + ".json",'r',encoding='UTF-8') as f:
             self.cnf=json.loads(f.read())
         
-
-
-
-if __name__ == '__main__':
-    urls=["http://content.aetoscg.com/api/getEcoDataList.php?onDate=" + str(i) for i in range(20170101,20170130)]
-    pstr=r'data"\:(\[.*?\])'
-    filename='cpi.csv'
-    fetch_text(urls,pstr,filename)
