@@ -35,7 +35,7 @@ class MyClass(object):
     def set_code(self,code):
         self.code=code
     def set_dis(self,dis):
-        self.dis=dis
+        self.dis= "./data/"+dis
 
     def find(self, response):
         if response.error:

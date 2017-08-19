@@ -1,6 +1,6 @@
 {
-"argurl": "http://search.51job.com/list/080200,000000,0000,00,9,99,%E5%BA%97%E5%91%98,2,[[1,50,1]].html",
-"theme": "http://www.gooseeker.com/api/getextractor?key=9537dede351b975fa8e9dc67f57ea519&theme=true_pathjob51",
+"argurl": "http://search.51job.com/list/030000,000000,0000,00,9,99,%E8%B4%B7%E6%AC%BE,2,[[1,12,1]].html",
+"theme": "./爬虫配置/job51/job51.xml",
 "code":"gbk",
 "cookie":"./爬虫配置/job51/job51.txt"
 }
